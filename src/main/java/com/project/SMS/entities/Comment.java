@@ -6,29 +6,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Announcement {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
-
-    @Column(length = 999999)
+    @Column(length = 500, nullable = false)
     private String content;
 
     private LocalDateTime postedAt;
 
     @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Class motherClass;
+    @JoinColumn(name = "announcement_id", nullable = false)
+    private Announcement announcement;
 
-    @OneToMany(mappedBy = "announcement", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Comment> comments; // Comments on this announcement
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
+    private StudentInfo student;
 }
-

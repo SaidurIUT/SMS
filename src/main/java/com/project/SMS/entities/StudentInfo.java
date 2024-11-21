@@ -13,7 +13,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class StudentInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,4 +34,7 @@ public class StudentInfo {
             inverseJoinColumns = @JoinColumn(name = "class_id")
     )
     private Set<Class> classes;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comment> comments; // Comments made by this student
 }
