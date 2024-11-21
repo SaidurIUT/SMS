@@ -38,8 +38,17 @@ public class User {
 
     private String verificationToken;
 
-    // Enforce one-to-one or many-to-one relationship with Role
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+    // Relationships to specific details
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private StudentInfo studentInfo;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TeacherInfo teacherInfo;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private AdminInfo adminInfo;
 }
