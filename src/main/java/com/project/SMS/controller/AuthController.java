@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -71,23 +72,16 @@ public class AuthController {
         User user = this.userRepo.findByEmail(username)
                 .orElseThrow(() -> new ApiException("User not found !!!"));
 
-//        // Log to check if the user was found
-//        System.out.println("User found: " + user.getEmail() + ", Enabled: " + user.isEnabled());
-//
-//        // Check if the user is enabled (i.e., email is verified)
-//        if (!user.isEnabled()) {
-//            // Log that the user has not verified their email
-//            System.out.println("User email is not verified for: " + username);
-//            throw new ApiException("Please Verify Your Email"); // Throw exception if not verified
-//        }
 
         // Log before proceeding with authentication
-        System.out.println("User is verified, proceeding with authentication.");
+        System.out.println("proceeding with authentication. with username:" + username +" password:" + password);
 
         // Proceed with authentication as it was doing before
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(username, password);
 
+
+        System.out.println("Authentication token: " + authenticationToken.toString());
         try {
             this.authenticationManager.authenticate(authenticationToken);
             // Log if authentication is successful

@@ -3,6 +3,7 @@ package com.project.SMS.config;
 import com.project.SMS.security.CustomUserDetailService;
 import com.project.SMS.security.JwtAuthenticationEntryPoint;
 import com.project.SMS.security.JwtAuthenticationFilter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,12 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     public static final String[] PUBLIC_URLS = {
             "/auth/**",
-            "/api/v1/auth/**",
-            "/v3/api-docs",
-            "/v2/api-docs",
-            "/swagger-resources/**",
-            "/swagger-ui/**",
-            "/webjars/**",
+            "/auth/login",
     };
 
     @Autowired
